@@ -1,0 +1,24 @@
+<% 
+const simdikiSayfa = aktifSayfa;
+const oncekiSayfa = simdikiSayfa - 1;
+const sonrakiSayfa = parseInt(aktifSayfa) + 1;
+const toplamSayfaSayisi = sayfaSayisi;
+
+%> 
+
+
+
+<% console.log(toplamSayfaSayisi); %> 
+
+<nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+    <a <%= simdikiSayfa != 1 ? 'href=/blog/?page='+oncekiSayfa : "" %> class="pagination-previous"  <%= aktifSayfa == 1 ? 'disabled ' : "" %> >Previous</a>
+    <a <%=simdikiSayfa != toplamSayfaSayisi && toplamSayfaSayisi != 0 ? 'href=/blog/?page='+sonrakiSayfa : ""  %> class="pagination-next" <%= simdikiSayfa == toplamSayfaSayisi || toplamSayfaSayisi == 0 ? 'disabled' : "" %> >Next page</a>
+    <ul class="pagination-list">
+      <% for( let index = 1; index <= toplamSayfaSayisi; index++ ) { %>
+        <li>
+          <a href="/blog/?page=<%- index  %>" class="pagination-link is-primary <%- index == aktifSayfa ? 'is-current' : "" %> " aria-label="Goto page 1"><%- index %> </a>
+        </li>
+      <% } %>
+      
+    </ul>
+  </nav>
